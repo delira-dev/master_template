@@ -29,25 +29,26 @@ To customize your python package, you just have to change your `setup.py`.
 Currently the important part looks like 
 ```python
 setup(
-    name='template_package',
-    version=_version,
+    name='template_package',  # Change here
+    version=versioneer.get_version(),
+    cmdclass=versioneer.get_cmdclass(),
     packages=find_packages(),
-    url='https://github.com/justusschock/template-repo-python',
+    url='RepoURL',  # Change here
     test_suite="unittest",
     long_description=readme,
     long_description_content_type='text/markdown',
     install_requires=requirements,
     tests_require=["coverage"],
     python_requires=">=3.5",
-    author="Justus Schock",
-    author_email="justus.schock@rwth-aachen.de",
-    license=license,
+    author="AuthorName",  # Change here
+    author_email="AuthorEmail",  # Change here
+    license="LicenseName",  # Change here
 )
 ```
 This includes the default information for me and must be adjusted to your needs:
 
 * `name` provides the package-name you can later import
-* `version` provides the package-version (which will currently be extracted from your package's `__init__.py`, but be also set manually)
+* `version` provides the package-version (uses python-versioneer to determine version)
 * `packages` is a list defining all packages (and their sub-packages and the sub-packages of their sub-packages and so on...), that should be installed. This is automatically extracted by `find_packages`, which also accepts some sub-packages to ignore (besides some other arguments).
 `url` specifies the packages homepage (in this case the current GitHub repo); You might want to change it to your repos homepage.
 * `test_suite` defines the test-suite to use for your unittests. In this repo template, we'll python's built-in framework `unittest`, but you can change this too; *Just make sure to also change this, when we get to CI/CD.*
@@ -96,4 +97,3 @@ The scripts used b CI/CD to install the requirements and run your tests are lyin
 The file names indicate pretty well, what tey're doing. Of course you can customize them too.
 
 If you want Travis to automatically fix your code style where possible you have to add a github access token to travis, comment in the [lines 6-28](scripts/ci/run_style_checks.sh#L6-L28) and change the environment variable and the repository in [line 27](scripts/ci/run_style_checks.sh#L27).
-
