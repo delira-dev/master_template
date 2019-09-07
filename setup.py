@@ -43,5 +43,5 @@ setup(
     python_requires=">=3.5",
     author="AuthorName",  # Change here
     author_email="AuthorEmail",  # Change here
-    license="LicenseName",  # Change here
+    license="BSD-2",  # Change here
 )
